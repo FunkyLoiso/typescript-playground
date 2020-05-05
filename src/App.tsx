@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Project } from "./data-models/Project"
+import { Task } from "./data-models/Task"
+
+interface AppState {
+    projects: Project[];
+    tasks: Task[];
+    selectedProjectId: string;
+    selectedTaskId: string
 }
 
-export default App;
+export class App extends React.Component<{}, AppState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            projects: [{ id: "1", name: "coq", color: "ruby" }],
+            tasks: [{ id: "1", text: "catch", created: new Date(), projectId: "1" }],
+            selectedProjectId: "1",
+            selectedTaskId: "1"
+        };
+    }
+
+    render() {
+        return (
+            <h3>Projects and tasks</h3>
+        )
+    }
+}
+
