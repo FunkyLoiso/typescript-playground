@@ -18,7 +18,7 @@ function ListDND() {
     const [list, setList] = React.useState<ItemType[]>([
         { id: 1, value: "hammer" },
         { id: 2, value: "microscope" },
-        { id: 2, value: "dodgy stuff" }
+        { id: 3, value: "dodgy stuff" }
     ]);
     return (
         <ListGroup>
