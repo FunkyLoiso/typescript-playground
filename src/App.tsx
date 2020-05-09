@@ -3,6 +3,12 @@ import './App.css';
 
 import { Project } from "./data-models/Project"
 import { Task } from "./data-models/Task"
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import {ProjectsList} from "./ProjectsList";
+import {TasksList} from "./TasksList";
+import {TaskView} from "./TaskView";
 
 interface AppState {
     projects: Project[];
@@ -24,7 +30,18 @@ export class App extends React.Component<{}, AppState> {
 
     render() {
         return (
-            <h3>Projects and tasks</h3>
+            <Container fluid>
+                <Row>
+                    <Col>
+                        Header should be here
+                    </Col>
+                </Row>
+                <Row>
+                    <Col><ProjectsList /></Col>
+                    <Col><TasksList /></Col>
+                    <Col><TaskView /></Col>
+                </Row>
+            </Container>
         )
     }
 }
