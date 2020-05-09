@@ -1,31 +1,19 @@
 import React from 'react';
 import './App.css';
 
-import { Project } from "./data-models/Project"
-import { Task } from "./data-models/Task"
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import {ProjectsList} from "./ProjectsList";
 import {TasksList} from "./TasksList";
 import {TaskView} from "./TaskView";
+import {IState} from "./State";
+import {state} from "./testData";
 
-interface AppState {
-    projects: Project[];
-    tasks: Task[];
-    selectedProjectId: string;
-    selectedTaskId: string
-}
-
-export class App extends React.Component<{}, AppState> {
+export class App extends React.Component<{}, IState> {
     constructor(props: any) {
         super(props);
-        this.state = {
-            projects: [{ id: "1", name: "coq", color: "ruby" }],
-            tasks: [{ id: "1", text: "catch", created: new Date(), projectId: "1" }],
-            selectedProjectId: "1",
-            selectedTaskId: "1"
-        };
+        this.state = state;
     }
 
     render() {
@@ -37,7 +25,7 @@ export class App extends React.Component<{}, AppState> {
                     </Col>
                 </Row>
                 <Row>
-                    <Col><ProjectsList /></Col>
+                    <Col><ProjectsList state={this.state}/></Col>
                     <Col><TasksList /></Col>
                     <Col><TaskView /></Col>
                 </Row>

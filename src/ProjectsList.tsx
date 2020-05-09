@@ -1,12 +1,13 @@
 import React from 'react';
+import {IState} from "./State";
 
-export class ProjectsList extends React.Component<{}, any> {
+export class ProjectsList extends React.Component<any, IState> {
     constructor(props: any) {
-        super(props)
-        this.state = {}
+        super(props);
+        this.state = this.props.state
     }
 
     render() {
-        return  (<span>Projects should be here</span>)
+        return (<span>Projects count: {this.state.projects.length}</span>)
     }
 }
