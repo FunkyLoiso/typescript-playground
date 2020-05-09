@@ -21,7 +21,7 @@ export class App extends React.Component<{}, IState> {
             <Container fluid>
                 <Row>
                     <Col
-                        sm={4} md={3} lg={2}                // less columns on bigger screens
+                        sm={4} md={3} lg={2}
                         //className="d-none d-sm-block"       // hide on smallest screens
                         style={{ border: "1px solid red" }} // debug styling
                     >
@@ -34,12 +34,17 @@ export class App extends React.Component<{}, IState> {
                 </Row>
                 <Row>
                     <Col
-                        sm={4} md={3} lg={2}                // less columns on bigger screens
+                        sm={4} md={3} lg={2} 
                         //className="d-none d-sm-block"       // hide on smallest screens
                         style={{ border: "1px solid red" }} // debug styling
-                    ><ProjectsList state={this.state} /></Col>
+                    >
+                        <ProjectsList
+                            state={this.state}
+                            setProjects={projects => this.setState({ projects: projects })}
+                        />
+                    </Col>
                     <Col
-                        sm={5} md={4} lg={3}                // less columns on bigger screens
+                        sm={5} md={4} lg={3}
                         style={{ border: "1px solid green" }} // debug styling
                     >
                         <TasksList />

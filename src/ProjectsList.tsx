@@ -1,25 +1,24 @@
 import React from 'react';
 import {IState} from "./State";
 import ListGroup from "react-bootstrap/ListGroup";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
+
+import { ReactSortable } from "react-sortablejs"
 
 export class ProjectsList extends React.Component<any, IState> {
     constructor(props: any) {
         super(props);
-        this.state = this.props.state
     }
 
     render() {
-        const projects = this.state.projects.map((project) => {
-            return <Row>
-                <Button size="sm" variant="outline-secondary" block>{project.name}</Button>
-            </Row>
-        })
+        let projects = this.props.state.projects.map(p =>
+            <ListGroup.Item key={p.id} style={{ color: p.color }}>
+                {p.name}
+            </ListGroup.Item>);
 
-        return <Container>
-            {projects}
-        </Container>
+        return <ListGroup>
+            <ReactSortable list={this.props.state.projects} setList={this.props.setProjects}>
+                {projects}
+            </ReactSortable>
+        </ListGroup>
     }
 }

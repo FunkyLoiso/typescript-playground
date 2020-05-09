@@ -21,6 +21,10 @@ export const state = new TestState(
         new Project("2", "Project 2", "green"),
         new Project("3", "Project 3", "blue"),
     ],
-    [],
+    [   
+        { id: "1", text: "catch", created: new Date(), projectId: "1" },
+        { id: "2", text: "green catch", created: new Date(), projectId: "2" },
+        { id: "3", text: "also green catch", created: new Date(), projectId: "2" }
+    ],
     "", ""
 );
