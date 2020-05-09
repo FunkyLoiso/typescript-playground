@@ -20,14 +20,35 @@ export class App extends React.Component<{}, IState> {
         return (
             <Container fluid>
                 <Row>
-                    <Col>
+                    <Col
+                        sm={4} md={3} lg={2}                // less columns on bigger screens
+                        //className="d-none d-sm-block"       // hide on smallest screens
+                        style={{ border: "1px solid red" }} // debug styling
+                    >
+                        search
+                    </Col>
+                    <Col style={{ border: "1px solid blue" }}
+                    >
                         <h1>Zooist</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col><ProjectsList state={this.state}/></Col>
-                    <Col><TasksList /></Col>
-                    <Col><TaskView /></Col>
+                    <Col
+                        sm={4} md={3} lg={2}                // less columns on bigger screens
+                        //className="d-none d-sm-block"       // hide on smallest screens
+                        style={{ border: "1px solid red" }} // debug styling
+                    ><ProjectsList state={this.state} /></Col>
+                    <Col
+                        sm={5} md={4} lg={3}                // less columns on bigger screens
+                        style={{ border: "1px solid green" }} // debug styling
+                    >
+                        <TasksList />
+                    </Col>
+                    <Col
+                        style={{ border: "1px solid blue" }} // debug styling
+                    >
+                        <TaskView /
+                        ></Col>
                 </Row>
             </Container>
         )
