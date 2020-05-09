@@ -21,7 +21,7 @@ export class App extends React.Component<{}, IState> {
             <Container fluid>
                 <Row>
                     <Col>
-                        Header should be here
+                        <h1>Zooist</h1>
                     </Col>
                 </Row>
                 <Row>
