@@ -41,7 +41,7 @@ export class App extends React.Component<{}, IState> {
                         <ProjectsList state={this.state}/>
                     </Col>
                     <Col
-                        sm={5} md={4} lg={3}
+                        sm={4} md={4} lg={3}
                         style={{border: "1px solid green"}} // debug styling
                     >
                         <TasksList/>
