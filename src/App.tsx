@@ -17,6 +17,7 @@ export class App extends React.Component<{}, IState> {
     }
 
     render() {
+        console.info("App render: currentProjectId is ", this.state.currentProjectId);
         return (
             <Container fluid>
                 <Row>
@@ -41,19 +42,20 @@ export class App extends React.Component<{}, IState> {
                         <ProjectsList
                             state={this.state}
                             setProjects={projects => this.setState({ projects: projects })}
+                            setCurrentProjectId={id => this.setState({ currentProjectId: id })}
                         />
                     </Col>
                     <Col
                         sm={5} md={4} lg={3}
                         style={{ border: "1px solid green" }} // debug styling
                     >
-                        <TasksList />
+                        <TasksList state={this.state}/>
                     </Col>
                     <Col
                         style={{ border: "1px solid blue" }} // debug styling
                     >
-                        <TaskView /
-                        ></Col>
+                        <TaskView />
+                    </Col>
                 </Row>
             </Container>
         )

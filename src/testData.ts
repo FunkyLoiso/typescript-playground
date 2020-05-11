@@ -1,30 +1,33 @@
 import {Project} from './Project'
 import {Task} from './Task'
 
-export class TestState {
-    projects: Project[];
-    tasks: Task[];
-    selectedProjectId: string;
-    selectedTaskId: string;
+//export class TestState {
+//    projects: Project[];
+//    selectedProjectId: string;
+//    selectedTaskId: string;
 
-    constructor(projects: Project[], tasks: Task[], selectedProjectId: string, selectedTaskId: string) {
-        this.projects = projects;
-        this.tasks = tasks;
-        this.selectedProjectId = selectedProjectId;
-        this.selectedTaskId = selectedTaskId;
-    }
-}
+//    constructor(projects: Project[]) {
+//        this.projects = projects;
+//    }
+//}
 
-export const state = new TestState(
-    [
-        new Project("1", "Project 1", "red"),
-        new Project("2", "Project 2", "green"),
-        new Project("3", "Project 3", "blue"),
+export const state = {
+    projects: [
+        {
+            id: "1", name: "Project 1", color: "red", tasks: [
+                { id: "1", text: "catch", created: new Date(), projectId: "1" }
+            ]
+        },
+        {
+            id: "2", name: "Project 2", color: "green", tasks: [
+                { id: "2", text: "green catch", created: new Date(), projectId: "2" },
+                { id: "3", text: "also green catch", created: new Date(), projectId: "2" }
+            ]
+        },
+        {
+            id: "3", name: "Project 3", color: "blue", tasks: []
+        }
     ],
-    [   
-        { id: "1", text: "catch", created: new Date(), projectId: "1" },
-        { id: "2", text: "green catch", created: new Date(), projectId: "2" },
-        { id: "3", text: "also green catch", created: new Date(), projectId: "2" }
-    ],
-    "", ""
-);
+    currentProjectId: "",
+    currentTaskId: ""
+};

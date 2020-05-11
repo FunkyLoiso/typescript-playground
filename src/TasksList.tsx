@@ -1,12 +1,25 @@
 import React from 'react';
+import { IState } from "./State";
+import ListGroup from "react-bootstrap/ListGroup";
 
-export class TasksList extends React.Component<{}, any> {
+import { ReactSortable } from "react-sortablejs"
+
+export class TasksList extends React.Component<any, IState> {
     constructor(props: any) {
-        super(props)
-        this.state = {}
+        super(props);
     }
 
     render() {
-        return <span>Tasks should be here</span>
+        console.info("TasksList: currentProjectId is ", this.props.state.currentProjectId);
+        if (this.props.state.currentProjectId === "") {
+            return <div>Please, select a project</div>
+        }
+        else {
+            return <div>Tasks from project {this.props.state.currentProjectId}</div>
+        }
+
+        //return <ListGroup>
+        //    {projects}
+        //</ListGroup>
     }
 }
