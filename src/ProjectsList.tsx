@@ -29,7 +29,8 @@ export class ProjectsList extends React.Component<any, IState> {
             <ListGroup.Item
                 key={p.id}
                 style={{ color: p.color }}
-                action onClick={this.handleProjectClick}
+                action
+                onClick={this.handleProjectClick}
             >
                 {p.name}
             </ListGroup.Item>);

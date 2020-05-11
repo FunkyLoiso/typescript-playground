@@ -49,7 +49,11 @@ export class App extends React.Component<{}, IState> {
                         sm={4} md={4} lg={3}
                         style={{ border: "1px solid green" }} // debug styling
                     >
-                        <TasksList state={this.state}/>
+                        <TasksList
+                            state={this.state}
+                            setProjects={projects => this.setState({ projects: projects })}
+                            setCurrentTaskId={id => this.setState({ currentTaskId: id })}
+                        />
                     </Col>
                     <Col
                         style={{ border: "1px solid blue" }} // debug styling
