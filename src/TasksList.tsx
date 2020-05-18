@@ -1,25 +1,16 @@
 import React from 'react';
-import { IState } from "./State";
-import ListGroup from "react-bootstrap/ListGroup";
+import {
+    atom,
+    useRecoilValue,
+} from 'recoil';
 
-import { ReactSortable } from "react-sortablejs"
-
-export class TasksList extends React.Component<any, IState> {
-    constructor(props: any) {
-        super(props);
-    }
-
-    render() {
-        console.info("TasksList: currentProjectId is ", this.props.state.currentProjectId);
-        if (this.props.state.currentProjectId === "") {
-            return <div>Please, select a project</div>
-        }
-        else {
-            return <div>Tasks from project {this.props.state.currentProjectId}</div>
-        }
-
-        //return <ListGroup>
-        //    {projects}
-        //</ListGroup>
-    }
+export function TasksList() {
+    const selectedProjectState = atom({
+        key: 'selectedProject',
+        default: 1,
+    });
+    const selectedProject  = useRecoilValue(selectedProjectState);
+    return <div>
+        Tasks from project {selectedProject}
+    </div>
 }

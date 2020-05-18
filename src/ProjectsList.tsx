@@ -1,43 +1,44 @@
 import React from 'react';
-import {IState} from "./State";
 import ListGroup from "react-bootstrap/ListGroup";
+import {ReactSortable} from "react-sortablejs"
+import {testProjects} from './testData'
 
-import { ReactSortable } from "react-sortablejs"
-import { Project } from './Project';
+import {
+    atom,
+    useRecoilState,
+} from 'recoil';
 
-export class ProjectsList extends React.Component<any, IState> {
-    constructor(props: any) {
-        super(props);
-        this.setProjects = this.setProjects.bind(this)
-        this.handleProjectClick = this.handleProjectClick.bind(this)
+export function ProjectsList() {
+    const projectsState = atom({
+        key: 'projects',
+        default: testProjects,
+    });
+    const selectedProjectState = atom({
+        key: 'selectedProject',
+        default: 1,
+    });
+    const [projects, setProjects] = useRecoilState(projectsState);
+    const [selectedProject, setSelectedProject] = useRecoilState(selectedProjectState);
+
+    const onProjectClick = (e: React.MouseEvent) => {
+        const projectId = e.currentTarget.getAttribute("data-id") as string;
+        console.info("Project clicked: ", projectId)
+        setSelectedProject(projectId);
     }
 
-    setProjects(projects: Project[]) {
-        this.props.setProjects(projects);
-    }
+    let items = projects.map(p =>
+        <ListGroup.Item
+            key={p.id}
+            style={{color: p.color}}
+            action onClick={onProjectClick}
+            active={selectedProject === p.id}>
+            {p.name}
 
-    handleProjectClick(e: React.MouseEvent) {
-        var prjectId = e.currentTarget.getAttribute("data-id");
-        console.info("Project clicked: ", prjectId)
-        if (typeof prjectId === "string") {
-            this.props.setCurrentProjectId(prjectId);
-        }
-    }
+        </ListGroup.Item>);
 
-    render() {
-        let projects = this.props.state.projects.map(p =>
-            <ListGroup.Item
-                key={p.id}
-                style={{ color: p.color }}
-                action onClick={this.handleProjectClick}
-            >
-                {p.name}
-            </ListGroup.Item>);
-
-        return <ListGroup>
-            <ReactSortable list={this.props.state.projects} setList={this.setProjects}>
-                {projects}
-            </ReactSortable>
-        </ListGroup>
-    }
+    return <ListGroup>
+        <ReactSortable list={projects} setList={setProjects}>
+            {items}
+        </ReactSortable>
+    </ListGroup>
 }

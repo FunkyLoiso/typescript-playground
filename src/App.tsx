@@ -7,58 +7,33 @@ import Row from "react-bootstrap/Row";
 import {ProjectsList} from "./ProjectsList";
 import {TasksList} from "./TasksList";
 import {TaskView} from "./TaskView";
-import {IState} from "./State";
-import {state} from "./testData";
+import {
+    RecoilRoot,
+} from 'recoil';
 
-export class App extends React.Component<{}, IState> {
-    constructor(props: any) {
-        super(props);
-        this.state = state;
-    }
-
-    render() {
-        console.info("App render: currentProjectId is ", this.state.currentProjectId);
-        return (
+export function App() {
+    return (
+        <RecoilRoot>
             <Container fluid>
                 <Row>
-                    <Col
-                        sm={4} md={3} lg={2}
-                        //className="d-none d-sm-block"       // hide on smallest screens
-                        style={{ border: "1px solid red" }} // debug styling
-                    >
+                    <Col sm={4} md={3} lg={2} className="col-search">
                         search
                     </Col>
-                    <Col style={{ border: "1px solid blue" }}
-                    >
+                    <Col>
                         <h1>Zooist</h1>
                     </Col>
                 </Row>
                 <Row>
-                    <Col
-                        sm={4} md={3} lg={2} 
-                        //className="d-none d-sm-block"       // hide on smallest screens
-                        style={{ border: "1px solid red" }} // debug styling
-                    >
-                        <ProjectsList
-                            state={this.state}
-                            setProjects={projects => this.setState({ projects: projects })}
-                            setCurrentProjectId={id => this.setState({ currentProjectId: id })}
-                        />
+                    <Col sm={4} md={3} lg={2} className="col-projects-list">
+                        <ProjectsList/>
                     </Col>
-                    <Col
-                        sm={4} md={4} lg={3}
-                        style={{ border: "1px solid green" }} // debug styling
-                    >
-                        <TasksList state={this.state}/>
+                    <Col sm={4} md={4} lg={3} className="col-tasks-list">
+                        <TasksList/>
                     </Col>
-                    <Col
-                        style={{ border: "1px solid blue" }} // debug styling
-                    >
-                        <TaskView />
+                    <Col className="col-task">
+                        <TaskView/>
                     </Col>
                 </Row>
             </Container>
-        )
-    }
+        </RecoilRoot>);
 }
-

@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.col-search {
+  border-color: red;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.col-projects-list {
+  border-color: red;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.col-tasks-list {
+  border-color: green;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.col-task {
+  border-color: blue;
+  border-width: 1px;
+  border-style: solid;
+}
