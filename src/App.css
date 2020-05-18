@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.col {
+    border-style: solid;
+    border-width: 1px;
+    border-color: whitesmoke;
+}
+
+#projects {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#projects .list-group-item {
+    padding: .25rem .25rem !important;
+}
+
+#projects .list-group-item.active {
+    background-color: aliceblue;
+    border-color: whitesmoke;
+    color:black;
+}

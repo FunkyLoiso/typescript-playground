@@ -1,5 +1,5 @@
 import React from 'react';
-import {IState} from "./State";
+import { IState } from "./State";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import { ReactSortable } from "react-sortablejs"
@@ -17,28 +17,32 @@ export class ProjectsList extends React.Component<any, IState> {
     }
 
     handleProjectClick(e: React.MouseEvent) {
-        var prjectId = e.currentTarget.getAttribute("data-id");
-        console.info("Project clicked: ", prjectId)
-        if (typeof prjectId === "string") {
-            this.props.setCurrentProjectId(prjectId);
-        }
+        var projectId = e.currentTarget.getAttribute("data-id");
+        console.info("Project clicked: ", projectId)
+        this.props.setCurrentProjectId(projectId);
     }
 
     render() {
         let projects = this.props.state.projects.map(p =>
             <ListGroup.Item
                 key={p.id}
-                style={{ color: p.color }}
-                action
+                // action
                 onClick={this.handleProjectClick}
+                active={p.id === this.props.state.currentProjectId}
             >
+                <span style={{ color: p.color }}>
+                    <i className="fas fa-circle-notch" />
+                </span>
                 {p.name}
             </ListGroup.Item>);
 
-        return <ListGroup>
-            <ReactSortable list={this.props.state.projects} setList={this.setProjects}>
-                {projects}
-            </ReactSortable>
-        </ListGroup>
+        return (
+            <ListGroup
+                defaultActiveKey={this.props.state.projects[0].id}
+                variant="flush">
+                <ReactSortable list={this.props.state.projects} setList={this.setProjects}>
+                    {projects}
+                </ReactSortable>
+            </ListGroup>)
     }
 }
