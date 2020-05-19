@@ -6,18 +6,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ProjectsList } from "./ProjectsList";
 import { TasksList } from "./TasksList";
-import { TaskView } from "./TaskView";
 import { IState } from "./State";
-import { state } from "./testData";
+import { getTestState } from "./testData";
 
 export class App extends React.Component<{}, IState> {
     constructor(props: any) {
         super(props);
-        this.state = state;
+        this.state = getTestState();
     }
 
     render() {
-        console.info("App render: currentProjectId is ", this.state.currentProjectId);
+        console.info("App render: current project is ", this.state.currentProject!.name);
         return (
             <Container fluid>
                 <Row>
@@ -25,25 +24,23 @@ export class App extends React.Component<{}, IState> {
                         search
                     </Col>
                     <Col>
-                        <h1>Zooist</h1>
+                        <h4>{this.state.currentProject ? this.state.currentProject.name : "Zooist"}</h4>
                     </Col>
                 </Row>
                 <Row>
                     <Col id="projects" sm={4} md={3} lg={2}>
                         <ProjectsList
-                            state={this.state}
+                            projects={this.state.projects}
                             setProjects={projects => this.setState({ projects: projects })}
-                            setCurrentProjectId={id => this.setState({ currentProjectId: id })}
-                        />
+                            currentProject={this.state.currentProject!}
+                            setCurrentProject={project => this.setState({ currentProject: project })} />
                     </Col>
-                    <Col sm={4} md={4} lg={3}>                        <TasksList
-                            state={this.state}
-                            setProjects={projects => this.setState({ projects: projects })}
-                            setCurrentTaskId={id => this.setState({ currentTaskId: id })}
-                        />
-                    </Col>
-                    <Col>
-                        <TaskView />
+                    <Col id="tasks" sm={4} md={4} lg={3}>
+                        <TasksList
+                            currentProject={this.state.currentProject!}
+                            setCurrentProject={project => this.setState({ currentProject: project })}
+                            currentTask={this.state.currentTask!}
+                            setCurrentTask={task => this.setState({ currentTask: task })} />
                     </Col>
                 </Row>
             </Container>

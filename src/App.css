@@ -50,9 +50,26 @@
 
 #projects .list-group-item {
     padding: .25rem .25rem !important;
+    cursor: pointer;
 }
 
 #projects .list-group-item.active {
+    background-color: aliceblue;
+    border-color: whitesmoke;
+    color:black;
+}
+
+#tasks {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#tasks .list-group-item {
+    padding: .25rem .25rem !important;
+    cursor: pointer;
+}
+
+#tasks .list-group-item.active {
     background-color: aliceblue;
     border-color: whitesmoke;
     color:black;

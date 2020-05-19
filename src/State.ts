@@ -1,8 +1,9 @@
 import {Project} from "./Project";
+import {Task} from "./Task";
 
 export interface IState {
     projects: Project[];
-    currentProjectId: string;
-    currentTaskId: string;
+    currentProject: Project | undefined;
+    currentTask: Task | undefined;
 }
 
